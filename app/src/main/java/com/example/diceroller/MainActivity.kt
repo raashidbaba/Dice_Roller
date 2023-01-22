@@ -5,22 +5,24 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import com.example.diceroller.databinding.ActivityMainBinding
 import kotlin.random.Random
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityMainBinding
     lateinit var diceImage: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val rollButton = findViewById<Button>(R.id.btClick)
-        rollButton.setOnClickListener {
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+
+        binding.btClick.setOnClickListener {
             rollDice()
         }
     }
 
     private fun rollDice() {
-         diceImage = findViewById(R.id.diceImage)
       //  val random = Random.nextInt(6) + 1
         val random = (1..6).shuffled().first()
         val randomDiceImg = when(random){
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
         }
-        diceImage.setImageResource(randomDiceImg)
+        binding.diceImage.setImageResource(randomDiceImg)
 
 
     }
