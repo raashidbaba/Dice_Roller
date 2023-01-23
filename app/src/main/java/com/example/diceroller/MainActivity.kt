@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.diceroller.databinding.ActivityMainBinding
 import kotlin.random.Random
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
         binding.btClick.setOnClickListener {
+            Toast.makeText(this,"dice is clicked",Toast.LENGTH_SHORT).show()
             rollDice()
         }
     }
